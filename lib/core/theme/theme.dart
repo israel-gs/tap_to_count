@@ -75,6 +75,24 @@ final lightTheme = ThemeData(
       fontSize: 14,
     ),
   ),
+  checkboxTheme: CheckboxThemeData(
+    fillColor: MaterialStateProperty.all(
+      customMaterialColor[500],
+    ),
+    checkColor: MaterialStateProperty.all(
+      Colors.white,
+    ),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(5),
+    ),
+    side: const BorderSide(
+      color: Colors.black87,
+      width: 2,
+    ),
+    overlayColor: MaterialStateProperty.all(
+      Colors.black12,
+    ),
+  ),
 );
 
 final darkTheme = ThemeData(
@@ -155,6 +173,22 @@ final darkTheme = ThemeData(
     labelSmall: TextStyle(
       color: Colors.white60,
       fontSize: 14,
+    ),
+  ),
+  checkboxTheme: CheckboxThemeData(
+    checkColor: MaterialStateProperty.all(Colors.white),
+    fillColor: MaterialStateProperty.all(
+      secondaryDarkBackgroundColor,
+    ),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(5),
+    ),
+    side: const BorderSide(
+      color: secondaryDarkBackgroundColor,
+      width: 2,
+    ),
+    overlayColor: MaterialStateProperty.all(
+      secondaryDarkBackgroundColor.withOpacity(0.5),
     ),
   ),
 );
