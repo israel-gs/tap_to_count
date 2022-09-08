@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:tap_to_count/app/data/models/counter_model.dart';
@@ -30,25 +31,25 @@ class HomeScreen extends GetView<HomeController> {
       ),
       drawer: const HomeDrawerWidget(),
       body: controller.obx(
-        (state) => SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Obx(
-              () => Column(
-                children: [
-                  ...controller.counters
-                      .map(
-                        (counter) => _buildCounterItem(counter),
-                      )
-                      .toList(),
-                ],
+            (state) =>
+            SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Obx(
+                      () =>
+                      Column(
+                        children: [
+                          ...controller.counters
+                              .map(
+                                (counter) => _buildCounterItem(counter),
+                          )
+                              .toList(),
+                        ],
+                      ),
+                ),
               ),
             ),
-          ),
-        ),
-        onEmpty: const Center(
-          child: Text('No se encontraron contadores'),
-        ),
+        onEmpty: _buildEmptyList(),
       ),
     );
   }
@@ -83,13 +84,56 @@ class HomeScreen extends GetView<HomeController> {
           },
           onTap: (counter) async {
             Get.toNamed(Routes.counterDetail, arguments: [counter])?.then(
-              (value) {
+                  (value) {
                 controller.getCounters();
               },
             );
           },
         ),
       ),
+    );
+  }
+
+  _buildEmptyList() {
+    return Stack(
+      children: [
+        Positioned(
+          right: 40,
+          child: SvgPicture.asset(
+            'lib/assets/images/arrow.svg',
+            color: Colors.grey,
+          ),
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              'lib/assets/images/empty.svg',
+              semanticsLabel: 'Empty list',
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  'No se encontraron contadores',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+            const Text(
+              'Crea un nuevo contador',
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                color: Colors.grey,
+              ),
+            )
+          ],
+        ),
+      ],
     );
   }
 }
