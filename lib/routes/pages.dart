@@ -13,7 +13,7 @@ abstract class AppPages {
   static final pages = [
     GetPage(
       name: Routes.home,
-      page: () => HomeScreen(),
+      page: () => const HomeScreen(),
       bindings: [HomeBinding(), MainBinding()],
     ),
     GetPage(

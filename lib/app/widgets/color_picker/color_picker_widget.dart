@@ -1,29 +1,46 @@
 import 'package:flutter/material.dart';
 
 class ColorPickerWidget extends StatefulWidget {
+  final Color? initialColor;
   final Function(Color)? onColorChanged;
 
-  const ColorPickerWidget({Key? key, this.onColorChanged}) : super(key: key);
+  const ColorPickerWidget({
+    Key? key,
+    this.onColorChanged,
+    this.initialColor,
+  }) : super(key: key);
 
   @override
   State<ColorPickerWidget> createState() => _ColorPickerWidgetState();
 }
 
 class _ColorPickerWidgetState extends State<ColorPickerWidget> {
-  late List<MaterialColor> _randomColors;
+  late List<Color> _randomColors;
   late Color _selectedColor;
 
   @override
   void initState() {
-    List<MaterialColor> colors = [...Colors.primaries];
-    colors.shuffle();
-    _randomColors = colors.take(8).toList();
-    setState(() {
-      _selectedColor = _randomColors[0];
-    });
+    List<Color> tempColors = [...Colors.primaries.map((e) => e[500] ?? e)];
+    tempColors.shuffle();
+
+    if (widget.initialColor != null) {
+      tempColors = [
+        widget.initialColor!,
+        ...tempColors.where((e) => e != widget.initialColor)
+      ];
+      _selectedColor = widget.initialColor!;
+    } else {
+      _selectedColor = tempColors.first;
+    }
+
+    _randomColors = tempColors.take(8).toList();
+
+    setState(() {});
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       widget.onColorChanged?.call(_selectedColor);
     });
+
     super.initState();
   }
 
@@ -80,6 +97,21 @@ class _ColorPickerWidgetState extends State<ColorPickerWidget> {
                   borderRadius: BorderRadius.circular(5),
                 ),
                 duration: const Duration(milliseconds: 150),
+                child: Center(
+                  child: AnimatedContainer(
+                    height: 10,
+                    width: 10,
+                    decoration: BoxDecoration(
+                      color: _selectedColor == color
+                          ? Colors.white
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    duration: const Duration(
+                      milliseconds: 50,
+                    ),
+                  ),
+                ),
               ),
             ),
           ),

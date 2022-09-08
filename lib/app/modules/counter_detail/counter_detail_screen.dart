@@ -8,7 +8,7 @@ final RegExp regex = RegExp(r'([.]*0)(?!.*\d)');
 
 class CounterDetailScreen extends GetView<CounterDetailController> {
   const CounterDetailScreen({Key? key}) : super(key: key);
- 
+
   @override
   Widget build(BuildContext context) {
     CounterModel counter = controller.counter;
@@ -73,8 +73,8 @@ class CounterDetailScreen extends GetView<CounterDetailController> {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      onPrimary: backgroundColor,
+                      backgroundColor: Colors.white,
+                      foregroundColor: backgroundColor,
                       shape: const CircleBorder(),
                       elevation: 0,
                       padding: const EdgeInsets.symmetric(
@@ -92,8 +92,8 @@ class CounterDetailScreen extends GetView<CounterDetailController> {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      onPrimary: backgroundColor,
+                      backgroundColor: Colors.white,
+                      foregroundColor: backgroundColor,
                       shape: const CircleBorder(),
                       elevation: 0,
                       padding: const EdgeInsets.symmetric(

@@ -17,10 +17,20 @@ final lightTheme = ThemeData(
     ),
     elevation: 0,
   ),
+  textButtonTheme: TextButtonThemeData(
+    style: TextButton.styleFrom(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5),
+      ),
+      textStyle: const TextStyle(
+        fontWeight: FontWeight.w600,
+      ),
+    ),
+  ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      primary: customMaterialColor[500],
-      onPrimary: Colors.white,
+      backgroundColor: customMaterialColor[500],
+      foregroundColor: Colors.white,
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5),
@@ -30,7 +40,7 @@ final lightTheme = ThemeData(
         vertical: 14,
       ),
       textStyle: const TextStyle(
-        fontSize: 20,
+        fontSize: 14,
         color: Colors.white,
         fontWeight: FontWeight.w600,
       ),
@@ -114,10 +124,22 @@ final darkTheme = ThemeData(
     ),
     elevation: 0,
   ),
+  textButtonTheme: TextButtonThemeData(
+    style: TextButton.styleFrom(
+      foregroundColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5),
+      ),
+      textStyle: const TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.w600,
+      ),
+    ),
+  ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      primary: customMaterialColor[500],
-      onPrimary: Colors.white,
+      backgroundColor: customMaterialColor[500],
+      foregroundColor: Colors.white,
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5),
@@ -127,7 +149,7 @@ final darkTheme = ThemeData(
         vertical: 14,
       ),
       textStyle: const TextStyle(
-        fontSize: 20,
+        fontSize: 14,
         color: Colors.white,
         fontWeight: FontWeight.w600,
       ),

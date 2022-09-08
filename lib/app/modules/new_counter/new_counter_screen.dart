@@ -18,7 +18,7 @@ class NewCounterScreen extends GetView<NewCounterController> {
               title: const Text(
                 'Nuevo contador',
               ),
-              actions: [],
+              actions: const [],
             ),
             body: SingleChildScrollView(
               child: SafeArea(
@@ -98,6 +98,10 @@ class NewCounterScreen extends GetView<NewCounterController> {
                           children: const [
                             Text(
                               'Crear contador',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ],
                         ),

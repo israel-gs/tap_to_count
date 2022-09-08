@@ -79,8 +79,8 @@ class _CounterItemWidgetState extends State<CounterItemWidget> {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    onPrimary: Color(backgroundColor),
+                    backgroundColor: Colors.white,
+                    foregroundColor: Color(backgroundColor),
                     shape: const CircleBorder(),
                     elevation: 0,
                     padding: const EdgeInsets.symmetric(

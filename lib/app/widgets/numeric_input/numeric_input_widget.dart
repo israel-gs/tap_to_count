@@ -76,13 +76,9 @@ class _NumericInputWidgetState extends State<NumericInputWidget> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-
-    var brightness = MediaQuery.of(context).platformBrightness;
-
-    bool isDarkMode = brightness == Brightness.dark;
-
+    
     final buttonStyle = ElevatedButton.styleFrom(
-      primary: secondaryDarkBackgroundColor,
+      backgroundColor: secondaryDarkBackgroundColor,
       shape: const CircleBorder(),
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
