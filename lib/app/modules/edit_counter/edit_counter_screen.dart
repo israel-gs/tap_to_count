@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tap_to_count/app/modules/new_counter/new_counter_controller.dart';
+import 'package:tap_to_count/app/modules/edit_counter/edit_counter_controller.dart';
 import 'package:tap_to_count/app/widgets/color_picker/color_picker_widget.dart';
 import 'package:tap_to_count/app/widgets/numeric_input/numeric_input_widget.dart';
 
-class NewCounterScreen extends GetView<NewCounterController> {
-  const NewCounterScreen({Key? key}) : super(key: key);
+class EditCounterScreen extends GetView<EditCounterController> {
+  const EditCounterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class NewCounterScreen extends GetView<NewCounterController> {
           child: Scaffold(
             appBar: AppBar(
               title: const Text(
-                'Nuevo contador',
+                'Editar contador',
               ),
               actions: const [],
             ),
@@ -53,6 +53,7 @@ class NewCounterScreen extends GetView<NewCounterController> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: NumericInputWidget(
+                          currentValue: controller.counter.increment,
                           min: 1,
                           onChanged: (value) {
                             controller.increment = value;
@@ -63,6 +64,7 @@ class NewCounterScreen extends GetView<NewCounterController> {
                       _buildLabel('Color de fondo'),
                       const SizedBox(height: 10),
                       ColorPickerWidget(
+                        initialColor: Color(controller.counter.color),
                         onColorChanged: (color) {
                           controller.counterColor = color;
                           controller.counterTextColor =
@@ -82,6 +84,7 @@ class NewCounterScreen extends GetView<NewCounterController> {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 20),
                                 child: NumericInputWidget(
+                                  currentValue: controller.counter.maxValue,
                                   min: 1,
                                   enableInput: true,
                                   onChanged: (value) {
@@ -93,12 +96,12 @@ class NewCounterScreen extends GetView<NewCounterController> {
                       ),
                       const SizedBox(height: 20),
                       ElevatedButton(
-                        onPressed: controller.onCreateCounterPress,
+                        onPressed: controller.onUpdateCounterPress,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
                             Text(
-                              'Crear contador',
+                              'Guardar',
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,

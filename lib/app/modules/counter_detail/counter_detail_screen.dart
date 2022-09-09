@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:tap_to_count/app/data/models/counter_model.dart';
 import 'package:tap_to_count/app/modules/counter_detail/counter_detail_controller.dart';
+import 'package:tap_to_count/routes/pages.dart';
 
 final RegExp regex = RegExp(r'([.]*0)(?!.*\d)');
 
@@ -35,7 +36,9 @@ class CounterDetailScreen extends GetView<CounterDetailController> {
         actions: [
           IconButton(
             icon: const FaIcon(FontAwesomeIcons.gear),
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed(Routes.editCounter, arguments: [counter]);
+            },
           ),
         ],
       ),

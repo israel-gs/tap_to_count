@@ -5,7 +5,7 @@ import 'package:tap_to_count/app/data/services/counter/counter_repository.dart';
 import 'package:tap_to_count/core/utils/alert_utils.dart';
 import 'package:tap_to_count/routes/pages.dart';
 
-class NewCounterController extends GetxController with StateMixin {
+class EditCounterController extends GetxController with StateMixin {
   final CounterRepository _counterRepository;
 
   final RxBool _hasMaxValue = false.obs;
@@ -14,10 +14,22 @@ class NewCounterController extends GetxController with StateMixin {
   final _counterTextColor = Rx<Color?>(null);
   final _increment = Rx<double?>(null);
   final _maxValue = Rx<double?>(null);
+  final _counter = Rx<CounterModel>(Get.arguments[0]);
 
-  NewCounterController(this._counterRepository);
+  @override
+  void onInit() {
+    super.onInit();
+    counterNameController.text = counter.name;
+    _counterColor.value = Color(counter.color);
+    _counterTextColor.value = Color(counter.textColor);
+    _increment.value = counter.increment;
+    _maxValue.value = counter.maxValue;
+    _hasMaxValue.value = counter.maxValue != null;
+  }
 
-  onCreateCounterPress() {
+  EditCounterController(this._counterRepository);
+
+  onUpdateCounterPress() {
     if (counterNameController.text.trim().isEmpty) {
       AlertUtils.showWarning(
         message: 'Please enter a name for the counter',
@@ -25,15 +37,15 @@ class NewCounterController extends GetxController with StateMixin {
     } else {
       if (counterColor != null && counterTextColor != null) {
         final counter = CounterModel(
-          id: 0,
+          id: _counter.value.id,
           color: counterColor!.value,
           textColor: counterTextColor!.value,
-          value: 0,
+          value: _counter.value.value,
           name: counterNameController.text,
           increment: increment ?? 1,
           maxValue: maxValue,
         );
-        createCounter(counter);
+        updateCounter(counter);
         Get.offAllNamed(Routes.home);
       } else {
         AlertUtils.showWarning(
@@ -43,9 +55,9 @@ class NewCounterController extends GetxController with StateMixin {
     }
   }
 
-  createCounter(CounterModel counter) async {
+  updateCounter(CounterModel counter) async {
     await _counterRepository.open('counters.db');
-    await _counterRepository.insert(counter);
+    await _counterRepository.update(counter);
   }
 
   bool get hasMaxValue => _hasMaxValue.value;
@@ -67,4 +79,8 @@ class NewCounterController extends GetxController with StateMixin {
   Color? get counterTextColor => _counterTextColor.value;
 
   set counterTextColor(Color? value) => _counterTextColor.value = value;
+
+  CounterModel get counter => _counter.value;
+
+  set counter(CounterModel value) => _counter.value = value;
 }

@@ -31,24 +31,22 @@ class HomeScreen extends GetView<HomeController> {
       ),
       drawer: const HomeDrawerWidget(),
       body: controller.obx(
-            (state) =>
-            SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Obx(
-                      () =>
-                      Column(
-                        children: [
-                          ...controller.counters
-                              .map(
-                                (counter) => _buildCounterItem(counter),
-                          )
-                              .toList(),
-                        ],
-                      ),
-                ),
+        (state) => SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Obx(
+              () => Column(
+                children: [
+                  ...controller.counters
+                      .map(
+                        (counter) => _buildCounterItem(counter),
+                      )
+                      .toList(),
+                ],
               ),
             ),
+          ),
+        ),
         onEmpty: _buildEmptyList(),
       ),
     );
@@ -83,11 +81,8 @@ class HomeScreen extends GetView<HomeController> {
             controller.updateCounter(newCounter);
           },
           onTap: (counter) async {
-            Get.toNamed(Routes.counterDetail, arguments: [counter])?.then(
-                  (value) {
-                controller.getCounters();
-              },
-            );
+            await Get.toNamed(Routes.counterDetail, arguments: [counter]);
+            controller.getCounters();
           },
         ),
       ),
