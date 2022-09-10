@@ -17,8 +17,8 @@ class HomeScreen extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Contadores',
+        title: Text(
+          'appBarTitleHome'.tr,
         ),
         actions: [
           IconButton(
@@ -109,19 +109,19 @@ class HomeScreen extends GetView<HomeController> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text(
-                  'No se encontraron contadores',
-                  style: TextStyle(
+                  'titleEmptyListHome'.tr,
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
               ],
             ),
-            const Text(
-              'Crea un nuevo contador',
-              style: TextStyle(
+            Text(
+              'subtitleEmptyListHome'.tr,
+              style: const TextStyle(
                 fontWeight: FontWeight.w500,
                 color: Colors.grey,
               ),

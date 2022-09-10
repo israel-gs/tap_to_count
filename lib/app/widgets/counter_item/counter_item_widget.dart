@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:tap_to_count/app/data/models/counter_model.dart';
 
 final RegExp regex = RegExp(r'([.]*0)(?!.*\d)');
@@ -66,7 +67,7 @@ class _CounterItemWidgetState extends State<CounterItemWidget> {
                         Text(widget.counter.name, style: titleStyle),
                         widget.counter.maxValue != null
                             ? Text(
-                                'de ${widget.counter.maxValue.toString().replaceAll(regex, '')}',
+                                '${'counterMaxConnector'.tr} ${widget.counter.maxValue.toString().replaceAll(regex, '')}',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Color(foregroundColor),

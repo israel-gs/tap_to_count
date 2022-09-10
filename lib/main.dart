@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tap_to_count/app/data/services/counter/counter_service.dart';
+import 'package:tap_to_count/core/languages/languages.dart';
 import 'package:tap_to_count/core/theme/theme.dart';
 import 'package:tap_to_count/main_binding.dart';
 import 'package:tap_to_count/routes/pages.dart';
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
       initialBinding: MainBinding(),
       initialRoute: Routes.home,
       getPages: AppPages.pages,
+      locale: Get.deviceLocale,
+      translations: Languages(),
+      fallbackLocale: const Locale('en', 'US'),
     );
   }
 }

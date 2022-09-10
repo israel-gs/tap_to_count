@@ -15,8 +15,8 @@ class EditCounterScreen extends GetView<EditCounterController> {
           },
           child: Scaffold(
             appBar: AppBar(
-              title: const Text(
-                'Editar contador',
+              title: Text(
+                'appBarTitleEditCounter'.tr,
               ),
               actions: const [],
             ),
@@ -27,28 +27,34 @@ class EditCounterScreen extends GetView<EditCounterController> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildLabel('Nombre'),
+                      _buildLabel('inputNameLabelEditCounter'.tr),
                       const SizedBox(height: 10),
                       TextFormField(
                         controller: controller.counterNameController,
-                        decoration: const InputDecoration(
-                          hintText: 'Ejm.: Tareas',
+                        decoration: InputDecoration(
+                          hintText: 'inputNameHintEditCounter'.tr,
                         ),
                         style: Theme.of(context).textTheme.labelMedium,
                         textCapitalization: TextCapitalization.sentences,
                       ),
                       const SizedBox(height: 5),
-                      Text(
-                        'Piensa en un nombre corto y descriptivo para este contador.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Theme.of(context).textTheme.labelSmall?.color,
-                          fontWeight: FontWeight.w600,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'inputNameHelpEditCounter'.tr,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color:
+                                  Theme.of(context).textTheme.labelSmall?.color,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          )
+                        ],
                       ),
                       const SizedBox(height: 20),
-                      _buildLabel('Incremento'),
+                      _buildLabel('inputIncrementLabelEditCounter'.tr),
                       const SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -61,7 +67,7 @@ class EditCounterScreen extends GetView<EditCounterController> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      _buildLabel('Color de fondo'),
+                      _buildLabel('inputBackgroundColorLabelEditCounter'.tr),
                       const SizedBox(height: 10),
                       ColorPickerWidget(
                         initialColor: Color(controller.counter.color),
@@ -99,10 +105,10 @@ class EditCounterScreen extends GetView<EditCounterController> {
                         onPressed: controller.onUpdateCounterPress,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
+                          children: [
                             Text(
-                              'Guardar',
-                              style: TextStyle(
+                              'buttonCreateCounterTextEditCounter'.tr,
+                              style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -122,7 +128,7 @@ class EditCounterScreen extends GetView<EditCounterController> {
   _buildCheckbox() {
     return CheckboxListTile(
       title: Text(
-        "Añadir límite máximo",
+        'checkboxLimitLabelEditCounter'.tr,
         style: TextStyle(
           fontSize: 16,
           color: Get.theme.textTheme.labelMedium?.color,

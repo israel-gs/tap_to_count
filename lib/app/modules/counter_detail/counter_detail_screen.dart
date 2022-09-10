@@ -57,7 +57,7 @@ class CounterDetailScreen extends GetView<CounterDetailController> {
             const SizedBox(height: 10),
             counter.maxValue != null
                 ? Text(
-                    'de ${counter.maxValue.toString().replaceAll(regex, '')}',
+                    '${'counterMaxConnector'.tr} ${counter.maxValue.toString().replaceAll(regex, '')}',
                     style: titleStyle.copyWith(
                       fontSize: 14,
                     ),
