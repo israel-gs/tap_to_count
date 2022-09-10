@@ -47,6 +47,7 @@ class _NumericInputWidgetState extends State<NumericInputWidget> {
       _value = max;
     }
     _valueController.text = _value.toString().replaceAll(regex, '');
+    widget.onChanged?.call(_value);
   }
 
   _onIncrement(double step) {
@@ -76,7 +77,7 @@ class _NumericInputWidgetState extends State<NumericInputWidget> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    
+
     final buttonStyle = ElevatedButton.styleFrom(
       backgroundColor: secondaryDarkBackgroundColor,
       shape: const CircleBorder(),
@@ -100,6 +101,21 @@ class _NumericInputWidgetState extends State<NumericInputWidget> {
         Expanded(
           child: TextFormField(
             controller: _valueController,
+            onChanged: (value) {
+              if (value.isNotEmpty) {
+                double newValue = double.parse(value);
+                if (newValue < widget.min) {
+                  newValue = widget.min;
+                }
+                if (widget.max != null && newValue > widget.max!) {
+                  newValue = widget.max!;
+                }
+                setState(() {
+                  _value = newValue;
+                });
+                widget.onChanged?.call(_value);
+              }
+            },
             enabled: widget.enableInput,
             textAlign: TextAlign.center,
             keyboardType: TextInputType.number,
