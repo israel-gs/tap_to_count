@@ -27,6 +27,7 @@ abstract class AppPages {
       name: Routes.counterDetail,
       page: () => const CounterDetailScreen(),
       bindings: [CounterDetailBinding()],
+      transition: Transition.circularReveal,
     ),
     GetPage(
       name: Routes.editCounter,
