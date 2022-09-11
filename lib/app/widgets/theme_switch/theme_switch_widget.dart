@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:switcher_button/switcher_button.dart';
+import 'package:tap_to_count/main_controller.dart';
 
 class ThemeSwitchWidget extends StatefulWidget {
   const ThemeSwitchWidget({Key? key}) : super(key: key);
@@ -10,33 +10,28 @@ class ThemeSwitchWidget extends StatefulWidget {
 }
 
 class _ThemeSwitchWidgetState extends State<ThemeSwitchWidget> {
-  bool _isSwitched = false;
+  MainController mainController = Get.find<MainController>();
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SwitcherButton(
-          onColor: Colors.white38,
-          offColor: Colors.black38,
-          value: _isSwitched,
-          onChange: (value) {
-            setState(() {
-              _isSwitched = value;
-            });
-            Get.changeThemeMode(value ? ThemeMode.light : ThemeMode.dark);
-          },
+    return Obx(
+      () => SwitchListTile(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
         ),
-        const SizedBox(width: 10),
-        Text(
-          'Modo oscuro',
-          style: TextStyle(
+        controlAffinity: ListTileControlAffinity.leading,
+        title: Text(
+          mainController.isDarkMode.value ? 'darkText'.tr : 'lightText'.tr,
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
-            color: Theme.of(context).textTheme.labelMedium?.color,
           ),
         ),
-      ],
+        value: mainController.isDarkMode.value,
+        onChanged: (value) {
+          mainController.changeTheme();
+        },
+      ),
     );
   }
 }

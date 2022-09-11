@@ -26,5 +26,7 @@ Map<String, String> enUS() {
     'inputBackgroundColorLabelEditCounter': 'Background color',
     'checkboxLimitLabelEditCounter': 'Add maximum limit',
     'buttonCreateCounterTextEditCounter': 'Save',
+    'darkText': 'Dark',
+    'lightText': 'Light',
   };
 }

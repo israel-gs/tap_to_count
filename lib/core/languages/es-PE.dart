@@ -27,5 +27,7 @@ Map<String, String> esPE() {
     'inputBackgroundColorLabelEditCounter': 'Color de fondo',
     'checkboxLimitLabelEditCounter': 'Añadir límite máximo',
     'buttonCreateCounterTextEditCounter': 'Guardar',
+    'darkText': 'Oscuro',
+    'lightText': 'Claro',
   };
 }

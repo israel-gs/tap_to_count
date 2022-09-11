@@ -39,11 +39,11 @@ class _CounterItemWidgetState extends State<CounterItemWidget> {
     );
 
     return ClipRRect(
-      borderRadius: BorderRadius.circular(15),
+      borderRadius: BorderRadius.circular(10),
       child: Material(
         color: Color(backgroundColor),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(10),
         ),
         child: InkWell(
           onTap: () {
