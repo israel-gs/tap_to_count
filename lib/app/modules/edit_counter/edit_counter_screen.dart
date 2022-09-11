@@ -41,14 +41,18 @@ class EditCounterScreen extends GetView<EditCounterController> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            'inputNameHelpEditCounter'.tr,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 14,
-                              color:
-                                  Theme.of(context).textTheme.labelSmall?.color,
-                              fontWeight: FontWeight.w600,
+                          Expanded(
+                            child: Text(
+                              'inputNameHelpEditCounter'.tr,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .labelSmall
+                                    ?.color,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           )
                         ],

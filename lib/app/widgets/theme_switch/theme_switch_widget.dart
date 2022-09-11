@@ -16,15 +16,18 @@ class _ThemeSwitchWidgetState extends State<ThemeSwitchWidget> {
   Widget build(BuildContext context) {
     return Obx(
       () => SwitchListTile(
+        activeThumbImage: const AssetImage('lib/assets/images/moon.png'),
+        inactiveThumbImage: const AssetImage('lib/assets/images/sun.png'),
+        activeColor: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5),
         ),
+        contentPadding: const EdgeInsets.all(0),
         controlAffinity: ListTileControlAffinity.leading,
         title: Text(
           mainController.isDarkMode.value ? 'darkText'.tr : 'lightText'.tr,
           style: const TextStyle(
             fontSize: 16,
-            fontWeight: FontWeight.w600,
           ),
         ),
         value: mainController.isDarkMode.value,

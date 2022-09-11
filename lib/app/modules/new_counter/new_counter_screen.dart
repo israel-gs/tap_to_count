@@ -41,14 +41,18 @@ class NewCounterScreen extends GetView<NewCounterController> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            'inputNameHelpNewCounter'.tr,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 14,
-                              color:
-                                  Theme.of(context).textTheme.labelSmall?.color,
-                              fontWeight: FontWeight.w600,
+                          Expanded(
+                            child: Text(
+                              'inputNameHelpNewCounter'.tr,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .labelSmall
+                                    ?.color,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                         ],
