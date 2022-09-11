@@ -1,5 +1,6 @@
 Map<String, String> enUS() {
   return {
+    // Home
     'appBarTitleHome': 'Counters',
     'titleEmptyListHome': 'No counters found',
     'subtitleEmptyListHome': 'Create a counter to start',
@@ -8,6 +9,7 @@ Map<String, String> enUS() {
     'buttonDeleteCounterHome': 'Delete counter',
     'buttonCancelDeleteCounterHome': 'Cancel',
     'counterMaxConnector': 'of',
+    // New counter
     'appBarTitleNewCounter': 'New counter',
     'inputNameLabelNewCounter': 'Name',
     'inputNameHintNewCounter': 'E.g.: Tasks',
@@ -17,6 +19,7 @@ Map<String, String> enUS() {
     'inputBackgroundColorLabelNewCounter': 'Background color',
     'checkboxLimitLabelNewCounter': 'Add maximum limit',
     'buttonCreateCounterTextNewCounter': 'Create counter',
+    // Edit counter
     'appBarTitleEditCounter': 'Edit counter',
     'inputNameLabelEditCounter': 'Name',
     'inputNameHintEditCounter': 'E.g.: Tasks',
@@ -26,7 +29,15 @@ Map<String, String> enUS() {
     'inputBackgroundColorLabelEditCounter': 'Background color',
     'checkboxLimitLabelEditCounter': 'Add maximum limit',
     'buttonCreateCounterTextEditCounter': 'Save',
+    // Drawer Theme
     'darkText': 'Dark',
     'lightText': 'Light',
+    // About Dialog
+    'titleAboutDialog': 'Privacy',
+    'viewLicenseAboutDialog': 'View Licenses',
+    'closeAboutDialog': 'Close',
+    // Contact
+    'contactTextDrawer': 'Contact me',
+    'developedBy': 'Developed by',
   };
 }

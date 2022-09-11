@@ -41,7 +41,7 @@ class HomeController extends GetxController with StateMixin {
     Get.defaultDialog(
       radius: 10,
       titlePadding: const EdgeInsets.only(top: 20, bottom: 10),
-      contentPadding: const EdgeInsets.only(bottom: 20),
+      contentPadding: const EdgeInsets.only(bottom: 20, right: 20, left: 20),
       title: 'titleDeleteCounterHome'.tr,
       middleText: 'messageDeleteCounterHome'.tr,
       cancel: TextButton(
