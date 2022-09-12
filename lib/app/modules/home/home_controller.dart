@@ -37,8 +37,8 @@ class HomeController extends GetxController with StateMixin {
     getCounters();
   }
 
-  deleteCounter(CounterModel counter) async {
-    Get.defaultDialog(
+  Future<bool?> deleteCounter(CounterModel counter) async {
+    return Get.defaultDialog<bool>(
       radius: 10,
       titlePadding: const EdgeInsets.only(top: 20, bottom: 10),
       contentPadding: const EdgeInsets.only(bottom: 20, right: 20, left: 20),
@@ -46,7 +46,7 @@ class HomeController extends GetxController with StateMixin {
       middleText: 'messageDeleteCounterHome'.tr,
       cancel: TextButton(
         onPressed: () {
-          Get.back();
+          Get.back(result: false);
         },
         child: Text('buttonCancelDeleteCounterHome'.tr),
       ),
@@ -58,7 +58,7 @@ class HomeController extends GetxController with StateMixin {
           ),
         ),
         onPressed: () async {
-          Get.back();
+          Get.back(result: true);
           await _counterRepository.delete(counter.id);
           counters.remove(counter);
           getCounters();

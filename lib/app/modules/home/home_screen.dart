@@ -57,11 +57,16 @@ class HomeScreen extends GetView<HomeController> {
       padding: const EdgeInsets.only(bottom: 20),
       child: Slidable(
         key: ValueKey(counter.id),
+        closeOnScroll: true,
         startActionPane: ActionPane(
           motion: const ScrollMotion(),
-          dismissible: DismissiblePane(onDismissed: () {
-            controller.deleteCounter(counter);
-          }),
+          dismissible: DismissiblePane(
+            confirmDismiss: () async {
+              return await controller.deleteCounter(counter) ?? false;
+            },
+            onDismissed: () {},
+            closeOnCancel: true,
+          ),
           children: [
             SlidableItemWidget(
               backgroundColor: Colors.redAccent,
