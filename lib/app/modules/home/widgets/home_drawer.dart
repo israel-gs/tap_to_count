@@ -30,6 +30,156 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
     });
   }
 
+  openPrivacy() {
+    Get.defaultDialog(
+      radius: 10,
+      titlePadding: const EdgeInsets.only(
+        top: 20,
+        bottom: 10,
+      ),
+      contentPadding: const EdgeInsets.only(
+        bottom: 20,
+        right: 20,
+        left: 20,
+      ),
+      title: 'titleAboutDialog'.tr,
+      content: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            'lib/assets/icon/app_icon.png',
+            width: 50,
+            height: 50,
+          ),
+          const SizedBox(width: 10),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                _packageInfo?.appName ?? '',
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              Text(
+                _packageInfo?.version ?? '',
+                style: const TextStyle(
+                  fontSize: 16,
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
+      cancel: TextButton(
+        child: Text('viewLicenseAboutDialog'.tr),
+        onPressed: () {
+          showLicensePage(context: context);
+        },
+      ),
+      confirm: TextButton(
+        child: Text(
+          'closeAboutDialog'.tr,
+          style: const TextStyle(
+            fontSize: 14,
+          ),
+        ),
+        onPressed: () {
+          Get.back();
+        },
+      ),
+    );
+  }
+
+  openContact() {
+    Get.defaultDialog(
+      radius: 10,
+      titlePadding: const EdgeInsets.only(
+        top: 20,
+        bottom: 10,
+      ),
+      contentPadding: const EdgeInsets.only(
+        bottom: 20,
+        right: 20,
+        left: 20,
+      ),
+      title: 'contactTextDrawer'.tr,
+      content: Column(
+        children: [
+          Text(
+            '${'developedBy'.tr}: Israel Gutierrez Salazar',
+            style: const TextStyle(
+              fontSize: 16,
+            ),
+          ),
+          const SizedBox(height: 10),
+          GestureDetector(
+            onTap: () async {
+              final Uri url = Uri.parse('https://israelgs.com');
+              if (!await launchUrl(url)) {
+                throw 'Could not launch';
+              }
+            },
+            child: Row(
+              children: const [
+                Icon(
+                  FontAwesomeIcons.globe,
+                  size: 16,
+                ),
+                SizedBox(width: 10),
+                Text(
+                  'https://israelgs.com',
+                  style: TextStyle(
+                    fontSize: 16,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
+          GestureDetector(
+            onTap: () async {
+              final Uri url =
+              Uri.parse('https://www.linkedin.com/in/israel-gs/');
+              if (!await launchUrl(url)) {
+                throw 'Could not launch';
+              }
+            },
+            child: Row(
+              children: const [
+                Icon(
+                  FontAwesomeIcons.linkedin,
+                  size: 16,
+                ),
+                SizedBox(width: 10),
+                Text(
+                  'https://www.linkedin.com/in/israel-gs/',
+                  style: TextStyle(
+                    fontSize: 16,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+      confirm: TextButton(
+        child: Text(
+          'closeAboutDialog'.tr,
+          style: const TextStyle(
+            fontSize: 14,
+          ),
+        ),
+        onPressed: () {
+          Get.back();
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -45,159 +195,13 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
           _buildItem(
             icon: FontAwesomeIcons.shieldHalved,
             title: 'titleAboutDialog'.tr,
-            onTap: () {
-              Get.defaultDialog(
-                radius: 10,
-                titlePadding: const EdgeInsets.only(
-                  top: 20,
-                  bottom: 10,
-                ),
-                contentPadding: const EdgeInsets.only(
-                  bottom: 20,
-                  right: 20,
-                  left: 20,
-                ),
-                title: 'titleAboutDialog'.tr,
-                content: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'lib/assets/icon/app_icon.png',
-                      width: 50,
-                      height: 50,
-                    ),
-                    const SizedBox(width: 10),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          _packageInfo?.appName ?? '',
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        Text(
-                          _packageInfo?.version ?? '',
-                          style: const TextStyle(
-                            fontSize: 16,
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-                cancel: TextButton(
-                  child: Text('viewLicenseAboutDialog'.tr),
-                  onPressed: () {
-                    showLicensePage(context: context);
-                  },
-                ),
-                confirm: TextButton(
-                  child: Text(
-                    'closeAboutDialog'.tr,
-                    style: const TextStyle(
-                      fontSize: 14,
-                    ),
-                  ),
-                  onPressed: () {
-                    Get.back();
-                  },
-                ),
-              );
-            },
+            onTap: openPrivacy,
           ),
           const SizedBox(height: 20),
           _buildItem(
             icon: FontAwesomeIcons.solidMessage,
             title: 'contactTextDrawer'.tr,
-            onTap: () {
-              Get.defaultDialog(
-                radius: 10,
-                titlePadding: const EdgeInsets.only(
-                  top: 20,
-                  bottom: 10,
-                ),
-                contentPadding: const EdgeInsets.only(
-                  bottom: 20,
-                  right: 20,
-                  left: 20,
-                ),
-                title: 'contactTextDrawer'.tr,
-                content: Column(
-                  children: [
-                    Text(
-                      '${'developedBy'.tr}: Israel Gutierrez Salazar',
-                      style: const TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    GestureDetector(
-                      onTap: () async {
-                        final Uri url = Uri.parse('https://israelgs.com');
-                        if (!await launchUrl(url)) {
-                          throw 'Could not launch';
-                        }
-                      },
-                      child: Row(
-                        children: const [
-                          Icon(
-                            FontAwesomeIcons.globe,
-                            size: 16,
-                          ),
-                          SizedBox(width: 10),
-                          Text(
-                            'https://israelgs.com',
-                            style: TextStyle(
-                              fontSize: 16,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    GestureDetector(
-                      onTap: () async {
-                        final Uri url =
-                            Uri.parse('https://www.linkedin.com/in/israel-gs/');
-                        if (!await launchUrl(url)) {
-                          throw 'Could not launch';
-                        }
-                      },
-                      child: Row(
-                        children: const [
-                          Icon(
-                            FontAwesomeIcons.linkedin,
-                            size: 16,
-                          ),
-                          SizedBox(width: 10),
-                          Text(
-                            'https://www.linkedin.com/in/israel-gs/',
-                            style: TextStyle(
-                              fontSize: 16,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                confirm: TextButton(
-                  child: Text(
-                    'closeAboutDialog'.tr,
-                    style: const TextStyle(
-                      fontSize: 14,
-                    ),
-                  ),
-                  onPressed: () {
-                    Get.back();
-                  },
-                ),
-              );
-            },
+            onTap: openContact,
           ),
           const SizedBox(height: 20),
           const Padding(
@@ -246,13 +250,20 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
                 children: [
                   Text(
                     _packageInfo?.appName ?? '',
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
+                    style: Theme
+                        .of(context)
+                        .textTheme
+                        .titleLarge!
+                        .copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                   Text(
                     'v${(_packageInfo?.version ?? '')}',
-                    style: Theme.of(context).textTheme.titleSmall,
+                    style: Theme
+                        .of(context)
+                        .textTheme
+                        .titleSmall,
                   ),
                 ],
               ),
