@@ -38,7 +38,7 @@ Map<String, String> esPE() {
     'viewLicenseAboutDialog': 'Ver Licencias',
     'closeAboutDialog': 'Cerrar',
     // Contact
-    'contactTextDrawer': 'Contáctame',
-    'developedBy': 'Desarrollado por',
+    'aboutTextDrawer': 'Acerca de',
+    'developedBy': 'Desarrollador',
   };
 }

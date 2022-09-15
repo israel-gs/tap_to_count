@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:tap_to_count/app/widgets/theme_switch/theme_switch_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class HomeDrawerWidget extends StatefulWidget {
   const HomeDrawerWidget({Key? key}) : super(key: key);
@@ -31,138 +33,140 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
   }
 
   openPrivacy() {
-    Get.defaultDialog(
-      radius: 10,
-      titlePadding: const EdgeInsets.only(
-        top: 20,
-        bottom: 10,
-      ),
-      contentPadding: const EdgeInsets.only(
-        bottom: 20,
-        right: 20,
-        left: 20,
-      ),
-      title: 'titleAboutDialog'.tr,
-      content: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            'lib/assets/icon/app_icon.png',
-            width: 50,
-            height: 50,
-          ),
-          const SizedBox(width: 10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                _packageInfo?.appName ?? '',
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Text(
-                _packageInfo?.version ?? '',
-                style: const TextStyle(
-                  fontSize: 16,
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
-      cancel: TextButton(
-        child: Text('viewLicenseAboutDialog'.tr),
-        onPressed: () {
-          showLicensePage(context: context);
-        },
-      ),
-      confirm: TextButton(
-        child: Text(
-          'closeAboutDialog'.tr,
-          style: const TextStyle(
-            fontSize: 14,
+    DefaultAssetBundle.of(context)
+        .loadString('lib/assets/privacy/privacy_policy.md')
+        .then((String value) {
+      Get.defaultDialog(
+        radius: 10,
+        titlePadding: const EdgeInsets.only(
+          top: 20,
+          bottom: 10,
+        ),
+        contentPadding: const EdgeInsets.only(
+          bottom: 20,
+          right: 20,
+          left: 20,
+        ),
+        title: 'titleAboutDialog'.tr,
+        content: SizedBox(
+          height: MediaQuery.of(context).size.height * 0.5,
+          width: MediaQuery.of(context).size.width * 0.8,
+          child: Markdown(
+            physics: const BouncingScrollPhysics(),
+            selectable: true,
+            data: value,
+            onTapLink: (text, href, title) async {
+              if (await canLaunchUrlString(href!)) {
+                await launchUrlString(href);
+              } else {
+                throw 'Could not launch $href';
+              }
+            },
           ),
         ),
-        onPressed: () {
-          Get.back();
-        },
-      ),
-    );
+        cancel: TextButton(
+          child: Text('viewLicenseAboutDialog'.tr),
+          onPressed: () {
+            showLicensePage(context: context);
+          },
+        ),
+        confirm: TextButton(
+          child: Text(
+            'closeAboutDialog'.tr,
+            style: const TextStyle(
+              fontSize: 14,
+            ),
+          ),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+      );
+    });
   }
 
-  openContact() {
+  openAbout() {
     Get.defaultDialog(
       radius: 10,
       titlePadding: const EdgeInsets.only(
         top: 20,
-        bottom: 10,
+        bottom: 20,
       ),
       contentPadding: const EdgeInsets.only(
         bottom: 20,
         right: 20,
         left: 20,
       ),
-      title: 'contactTextDrawer'.tr,
+      title: 'aboutTextDrawer'.tr,
       content: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'lib/assets/icon/app_icon.png',
+                width: 50,
+                height: 50,
+              ),
+              const SizedBox(width: 10),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    _packageInfo?.appName ?? '',
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    _packageInfo?.version ?? '',
+                    style: const TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+          const SizedBox(height: 30),
           Text(
-            '${'developedBy'.tr}: Israel Gutierrez Salazar',
+            '${'developedBy'.tr}: Israel Gutierrez',
             style: const TextStyle(
               fontSize: 16,
             ),
           ),
           const SizedBox(height: 10),
-          GestureDetector(
-            onTap: () async {
-              final Uri url = Uri.parse('https://israelgs.com');
-              if (!await launchUrl(url)) {
-                throw 'Could not launch';
-              }
-            },
-            child: Row(
-              children: const [
-                Icon(
-                  FontAwesomeIcons.globe,
-                  size: 16,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                onPressed: () async {
+                  final Uri url = Uri.parse('https://github.com/israel-gs');
+                  if (!await launchUrl(url)) {
+                    throw 'Could not launch';
+                  }
+                },
+                icon: const Icon(
+                  FontAwesomeIcons.github,
+                  size: 40,
                 ),
-                SizedBox(width: 10),
-                Text(
-                  'https://israelgs.com',
-                  style: TextStyle(
-                    fontSize: 16,
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 10),
-          GestureDetector(
-            onTap: () async {
-              final Uri url =
-              Uri.parse('https://www.linkedin.com/in/israel-gs/');
-              if (!await launchUrl(url)) {
-                throw 'Could not launch';
-              }
-            },
-            child: Row(
-              children: const [
-                Icon(
+              ),
+              IconButton(
+                onPressed: () async {
+                  final Uri url =
+                      Uri.parse('https://www.linkedin.com/in/israel-gs/');
+                  if (!await launchUrl(url)) {
+                    throw 'Could not launch';
+                  }
+                },
+                icon: const Icon(
                   FontAwesomeIcons.linkedin,
-                  size: 16,
+                  size: 40,
                 ),
-                SizedBox(width: 10),
-                Text(
-                  'https://www.linkedin.com/in/israel-gs/',
-                  style: TextStyle(
-                    fontSize: 16,
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              ],
-            ),
+              )
+            ],
           ),
         ],
       ),
@@ -189,26 +193,37 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
           bottomRight: Radius.circular(20),
         ),
       ),
-      child: ListView(
-        children: [
-          _buildDrawerHeader(),
-          _buildItem(
-            icon: FontAwesomeIcons.shieldHalved,
-            title: 'titleAboutDialog'.tr,
-            onTap: openPrivacy,
-          ),
-          const SizedBox(height: 20),
-          _buildItem(
-            icon: FontAwesomeIcons.solidMessage,
-            title: 'contactTextDrawer'.tr,
-            onTap: openContact,
-          ),
-          const SizedBox(height: 20),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: ThemeSwitchWidget(),
-          ),
-        ],
+      child: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView(
+                children: [
+                  _buildDrawerHeader(),
+                  _buildItem(
+                    icon: FontAwesomeIcons.shieldHalved,
+                    title: 'titleAboutDialog'.tr,
+                    onTap: openPrivacy,
+                  ),
+                  const SizedBox(height: 20),
+                  _buildItem(
+                    icon: FontAwesomeIcons.circleInfo,
+                    title: 'aboutTextDrawer'.tr,
+                    onTap: openAbout,
+                  ),
+                  const SizedBox(height: 20),
+                ],
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 10,
+              ),
+              child: ThemeSwitchWidget(),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -250,20 +265,13 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
                 children: [
                   Text(
                     _packageInfo?.appName ?? '',
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .titleLarge!
-                        .copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
                   ),
                   Text(
                     'v${(_packageInfo?.version ?? '')}',
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .titleSmall,
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ],
               ),

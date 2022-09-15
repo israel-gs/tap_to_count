@@ -42,6 +42,7 @@ dependencies:
   get_storage: ^2.0.3
   package_info_plus: ^1.4.3+1
   url_launcher: ^6.1.5
+  flutter_markdown: ^0.6.11
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +76,7 @@ flutter:
   assets:
     - lib/assets/images/
     - lib/assets/icon/
+    - lib/assets/privacy/
   # To add assets to your application, add an assets section, like this:
   # assets:
   #  - lib/assets/fonts

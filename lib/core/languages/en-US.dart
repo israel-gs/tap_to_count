@@ -37,7 +37,7 @@ Map<String, String> enUS() {
     'viewLicenseAboutDialog': 'View Licenses',
     'closeAboutDialog': 'Close',
     // Contact
-    'contactTextDrawer': 'Contact me',
-    'developedBy': 'Developed by',
+    'aboutTextDrawer': 'About',
+    'developedBy': 'Developer',
   };
 }
