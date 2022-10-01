@@ -43,6 +43,7 @@ dependencies:
   package_info_plus: ^1.4.3+1
   url_launcher: ^6.1.5
   flutter_markdown: ^0.6.11
+  flutter_native_splash: ^2.2.10+1
 
 dev_dependencies:
   flutter_test:
