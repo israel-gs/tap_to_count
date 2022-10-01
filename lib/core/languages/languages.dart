@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:tap_to_count/core/languages/en-US.dart';
-import 'package:tap_to_count/core/languages/es-PE.dart';
+import 'package:tap_to_count/core/languages/en_us.dart';
+import 'package:tap_to_count/core/languages/es_pe.dart';
 
 class Languages extends Translations {
   @override
