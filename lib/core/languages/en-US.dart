@@ -2,15 +2,17 @@ Map<String, String> enUS() {
   return {
     // Home
     'appBarTitleHome': 'Counters',
-    'titleEmptyListHome': 'No counters found',
-    'subtitleEmptyListHome': 'Create a counter to start',
+    'noCountersFound': 'No counters found',
+    'createACounterToStart': 'Create a counter to start',
     'titleDeleteCounterHome': 'Delete counter',
     'messageDeleteCounterHome': 'Are you sure you want to delete this counter?',
     'buttonDeleteCounterHome': 'Delete counter',
     'buttonCancelDeleteCounterHome': 'Cancel',
     'counterMaxConnector': 'of',
+    'openDrawer': 'Open drawer',
+
     // New counter
-    'appBarTitleNewCounter': 'New counter',
+    'newCounter': 'New counter',
     'inputNameLabelNewCounter': 'Name',
     'inputNameHintNewCounter': 'E.g.: Tasks',
     'inputNameHelpNewCounter':
@@ -20,7 +22,7 @@ Map<String, String> enUS() {
     'checkboxLimitLabelNewCounter': 'Add maximum limit',
     'buttonCreateCounterTextNewCounter': 'Create counter',
     // Edit counter
-    'appBarTitleEditCounter': 'Edit counter',
+    'editCounter': 'Edit counter',
     'inputNameLabelEditCounter': 'Name',
     'inputNameHintEditCounter': 'E.g.: Tasks',
     'inputNameHelpEditCounter':
@@ -39,5 +41,13 @@ Map<String, String> enUS() {
     // Contact
     'aboutTextDrawer': 'About',
     'developedBy': 'Developer',
+    'pleaseEnterNameForCounter': 'Please enter a name for the counter',
+    'counterColor&TextColorRequired':
+        'Counter color and text color are required',
+
+    'warning': 'Warning',
+    'error': 'Error',
+    'success': 'Success',
+    'info': 'Info',
   };
 }

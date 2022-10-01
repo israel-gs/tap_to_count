@@ -11,11 +11,15 @@ import 'package:tap_to_count/app/widgets/slidable_item/slidable_item_widget.dart
 import 'package:tap_to_count/routes/pages.dart';
 
 class HomeScreen extends GetView<HomeController> {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
+
+  // scaffold key
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text(
           'appBarTitleHome'.tr,
@@ -26,8 +30,14 @@ class HomeScreen extends GetView<HomeController> {
             onPressed: () {
               Get.toNamed(Routes.newCounter);
             },
+            tooltip: 'newCounter'.tr,
           ),
         ],
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          onPressed: () => _scaffoldKey.currentState!.openDrawer(),
+          tooltip: 'openDrawer'.tr,
+        ),
       ),
       drawer: const HomeDrawerWidget(),
       body: controller.obx(
@@ -116,7 +126,7 @@ class HomeScreen extends GetView<HomeController> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'titleEmptyListHome'.tr,
+                  'noCountersFound'.tr,
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
@@ -125,7 +135,7 @@ class HomeScreen extends GetView<HomeController> {
               ],
             ),
             Text(
-              'subtitleEmptyListHome'.tr,
+              'createACounterToStart'.tr,
               style: const TextStyle(
                 fontWeight: FontWeight.w500,
                 color: Colors.grey,

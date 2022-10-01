@@ -32,7 +32,7 @@ class EditCounterController extends GetxController with StateMixin {
   onUpdateCounterPress() {
     if (counterNameController.text.trim().isEmpty) {
       AlertUtils.showWarning(
-        message: 'Please enter a name for the counter',
+        message: 'pleaseEnterNameForCounter'.tr,
       );
     } else {
       if (counterColor != null && counterTextColor != null) {
@@ -49,7 +49,7 @@ class EditCounterController extends GetxController with StateMixin {
         Get.offAllNamed(Routes.home);
       } else {
         AlertUtils.showWarning(
-          message: 'Counter color and text color are required',
+          message: 'counterColor&TextColorRequired'.tr,
         );
       }
     }

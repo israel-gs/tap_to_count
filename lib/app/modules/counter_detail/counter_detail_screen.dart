@@ -39,6 +39,7 @@ class CounterDetailScreen extends GetView<CounterDetailController> {
             onPressed: () {
               Get.toNamed(Routes.editCounter, arguments: [counter]);
             },
+            tooltip: 'editCounter'.tr,
           ),
         ],
       ),

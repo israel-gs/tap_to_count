@@ -16,7 +16,7 @@ class EditCounterScreen extends GetView<EditCounterController> {
           child: Scaffold(
             appBar: AppBar(
               title: Text(
-                'appBarTitleEditCounter'.tr,
+                'editCounter'.tr,
               ),
               actions: const [],
             ),

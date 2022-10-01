@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 
 class AlertUtils {
   static showWarning({required String message}) {
     Get.snackbar(
-      '',
+      'warning'.tr,
       '',
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: Colors.amberAccent,
-      titleText: const SizedBox(),
       messageText: Text(
         message,
         style: const TextStyle(
@@ -24,7 +23,7 @@ class AlertUtils {
 
   static showError({required String message}) {
     Get.snackbar(
-      '',
+      'error'.tr,
       '',
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: Colors.redAccent,
@@ -44,7 +43,7 @@ class AlertUtils {
 
   static showSuccess({required String message}) {
     Get.snackbar(
-      '',
+      'success'.tr,
       '',
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: Colors.greenAccent,
@@ -64,7 +63,7 @@ class AlertUtils {
 
   static showInfo({required String message}) {
     Get.snackbar(
-      '',
+      'info'.tr,
       '',
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: Colors.blueAccent,

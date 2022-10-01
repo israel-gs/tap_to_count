@@ -51,17 +51,20 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
         content: SizedBox(
           height: MediaQuery.of(context).size.height * 0.5,
           width: MediaQuery.of(context).size.width * 0.8,
-          child: Markdown(
-            physics: const BouncingScrollPhysics(),
-            selectable: true,
-            data: value,
-            onTapLink: (text, href, title) async {
-              if (await canLaunchUrlString(href!)) {
-                await launchUrlString(href);
-              } else {
-                throw 'Could not launch $href';
-              }
-            },
+          child: Scrollbar(
+            thumbVisibility: true,
+            child: Markdown(
+              physics: const BouncingScrollPhysics(),
+              selectable: true,
+              data: value,
+              onTapLink: (text, href, title) async {
+                if (await canLaunchUrlString(href!)) {
+                  await launchUrlString(href);
+                } else {
+                  throw 'Could not launch $href';
+                }
+              },
+            ),
           ),
         ),
         cancel: TextButton(
@@ -148,10 +151,12 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
                     throw 'Could not launch';
                   }
                 },
-                icon: const Icon(
+                icon: Icon(
                   FontAwesomeIcons.github,
                   size: 40,
+                  color: Get.theme.textTheme.labelMedium?.color,
                 ),
+                tooltip: 'GitHub',
               ),
               IconButton(
                 onPressed: () async {
@@ -161,10 +166,12 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
                     throw 'Could not launch';
                   }
                 },
-                icon: const Icon(
+                icon: Icon(
                   FontAwesomeIcons.linkedin,
                   size: 40,
+                  color: Get.theme.textTheme.labelMedium?.color,
                 ),
+                tooltip: 'LinkedIn',
               )
             ],
           ),

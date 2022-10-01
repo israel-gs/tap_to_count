@@ -16,7 +16,7 @@ class NewCounterScreen extends GetView<NewCounterController> {
           child: Scaffold(
             appBar: AppBar(
               title: Text(
-                'appBarTitleNewCounter'.tr,
+                'newCounter'.tr,
               ),
               actions: const [],
             ),
