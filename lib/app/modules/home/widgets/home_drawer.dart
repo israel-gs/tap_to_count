@@ -147,7 +147,10 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
               IconButton(
                 onPressed: () async {
                   final Uri url = Uri.parse('https://github.com/israel-gs');
-                  if (!await launchUrl(url)) {
+                  if (!await launchUrl(
+                    url,
+                    mode: LaunchMode.externalApplication,
+                  )) {
                     throw 'Could not launch';
                   }
                 },
@@ -162,7 +165,10 @@ class _HomeDrawerWidgetState extends State<HomeDrawerWidget> {
                 onPressed: () async {
                   final Uri url =
                       Uri.parse('https://www.linkedin.com/in/israel-gs/');
-                  if (!await launchUrl(url)) {
+                  if (!await launchUrl(
+                    url,
+                    mode: LaunchMode.externalApplication,
+                  )) {
                     throw 'Could not launch';
                   }
                 },

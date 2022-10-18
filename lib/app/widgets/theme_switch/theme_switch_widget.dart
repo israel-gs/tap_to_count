@@ -24,10 +24,21 @@ class _ThemeSwitchWidgetState extends State<ThemeSwitchWidget> {
         ),
         contentPadding: const EdgeInsets.all(0),
         controlAffinity: ListTileControlAffinity.leading,
-        title: Text(
-          mainController.isDarkMode.value ? 'darkText'.tr : 'lightText'.tr,
-          style: const TextStyle(
-            fontSize: 16,
+        title: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 200),
+          child: Row(
+            key: ValueKey(mainController.isDarkMode.value),
+            children: [
+              Text(
+                mainController.isDarkMode.value
+                    ? 'darkText'.tr
+                    : 'lightText'.tr,
+                textAlign: TextAlign.start,
+                style: const TextStyle(
+                  fontSize: 16,
+                ),
+              ),
+            ],
           ),
         ),
         value: mainController.isDarkMode.value,
